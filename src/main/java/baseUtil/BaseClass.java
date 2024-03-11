@@ -13,14 +13,13 @@ public class BaseClass {
 	public WebDriver driver;
 	public HomePage homePage;
 
-
 	@BeforeMethod
 	public void setUp() {
 
 		// this recognize the driver
 
-		System.setProperty("webdriver.crome.driver","C:\\Users\\13473\\eclipse-workspace\\com.Target\\drivers\\chromedriver.exe");
-		
+		System.setProperty("webdriver.crome.driver", System.getProperty("user.dir") + "/driver/chromedriver.exe");
+
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
@@ -29,7 +28,7 @@ public class BaseClass {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		homePage = new HomePage(driver);
 	}
-	
+
 	@AfterMethod
 	public void tearUp() {
 		driver.quit();
